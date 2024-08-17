@@ -37,6 +37,7 @@
 <body>
     <h2>Invoice Slip</h2>
     <p><strong>Customer Name:</strong>${customerName}</p>
+    <p>${address}</p>
     <p><strong>Invoice Date:</strong>${invoiceDate}</p>
     <table>
         <thead>
@@ -59,7 +60,16 @@
             ).join("")}
         </tbody>
     </table>
-    <p class="total">Total Amount: $(totalAmount}</p>
+    <p class="discount">Discount Amount: ${discount}</p>
+    <p class="total">Total Amount: ${totalAmount}</p>
+    <p>
+        Tax is not payable on reverse charge basis <br>
+        This is a computer generated invoice and does not require signature <br>
+        Other charges are charges that are applicable to your order and include charges for logistics fee (where
+        applicable) and/or fees levied for high <br>
+        return rate <br>
+        Includes discounts for your city, limited returns and/or for online payments (as applicable) <br>
+    </p>
 </body>
 
 </html>

@@ -24,6 +24,11 @@
                     <label for="invoiceDate">Invoice Date</label>
                     <input type="text" class="form-control" id="invoiceDate" disabled readonly>
                 </div>
+                <div class="form-group col-md-12 mt-2">
+                    <label for="address">Address</label>
+                    <textarea name="address" id="address" class="form-control"></textarea>
+                </div>
+
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -42,9 +47,15 @@
                 </table>
             </div>
             <button class="btn btn-primary" type="button" onclick="addInvoiceItem()">Add Item</button>
-            <div class="form-group col-md-6 mt-4">
-                <label for="totalAmount">Total Amount</label>
-                <input type="text" class="form-control" id="totalAmount" disabled readonly>
+            <div class="row">
+                <div class="form-group col-md-6 mt-4">
+                    <label for="discount">Discount</label>
+                    <input type="number" class="form-control" id="discount">
+                </div>
+                <div class="form-group col-md-6 mt-4">
+                    <label for="totalAmount">Total Amount</label>
+                    <input type="text" class="form-control" id="totalAmount" disabled readonly>
+                </div>
             </div>
             <button type="submit" class="btn btn-success mt-4 mb-4">Generate Invoice</button>
             <button class="btn btn-danger btn-print mt-4 mb-4" onclick="printInvoice()">Print Invoice</button>

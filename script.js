@@ -22,6 +22,7 @@ function removeInvoiceItem(itemId) {
 
 function updateTotalAmount() {
     let totalAmount = 0;
+    const discount = $("#discount").val();
 
     $("tr[id^='itemRow']").each(function () {
         const quantity = parseFloat($(this).find(".quantity").val()) || 0;
@@ -31,6 +32,9 @@ function updateTotalAmount() {
         $(this).find('.totalItemPrice').val(totalItemPrice.toFixed(2));
         totalAmount += totalItemPrice;
     })
+    if (discount !== "") {
+        totalAmount = totalAmount - parseInt(discount);
+    }
 
     $("#totalAmount").val(totalAmount.toFixed(2))
 }
@@ -49,6 +53,8 @@ $("#invoiceForm").submit(function (event) {
 function printInvoice() {
     const customerName = $("#customerName").val();
     const invoiceDate = $("#invoiceDate").val();
+    const discount = $("#discount").val();
+    const address = $("#address").val();
     const items = []
 
     $("tr[id^='itemRow']").each(function () {
@@ -107,8 +113,9 @@ function printInvoice() {
 
 <body>
     <h2>Invoice Slip</h2>
-    <p><strong>Customer Name:</strong> ${customerName}</p>
-    <p><strong>Invoice Date:</strong> ${invoiceDate}</p>
+    <p><strong>Customer Name:</strong>  ${customerName}</p>
+    <p>${address}</p>
+    <p><strong>Invoice Date:</strong>  ${invoiceDate}</p>
     <table>
         <thead>
             <tr>
@@ -119,18 +126,28 @@ function printInvoice() {
             </tr>
         </thead>
         <tbody>
-            ${items.map((item) => `
+            ${items.map((item) =>
+        `
             <tr>
                 <td>${item.description}</td>
                 <td>${item.quantity}</td>
                 <td>${item.unitPrice}</td>
                 <td>${item.totalItemPrice}</td>
             </tr>
-            `
+        `
     ).join("")}
         </tbody>
     </table>
+    <p class="discount"><strong>Discount Amount: </strong> ${discount}</p>
     <p class="total">Total Amount: ${totalAmount}</p>
+    <p>
+        Tax is not payable on reverse charge basis <br>
+        This is a computer generated invoice and does not require signature <br>
+        Other charges are charges that are applicable to your order and include charges for logistics fee (where
+        applicable) and/or fees levied for high <br>
+        return rate <br>
+        Includes discounts for your city, limited returns and/or for online payments (as applicable) <br>
+    </p>
 </body>
 
 </html>`;
